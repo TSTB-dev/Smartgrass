@@ -1,13 +1,18 @@
 #include <WiFiClientSecure.h>#include <time.h>#include <SPI.h>#include <Wire.h>#include <Adafruit_GFX.h>#include <Adafruit_SH110X.h>#define i2c_Address 0x3c#define SCREEN_WIDTH 128 // OLED display width, in pixels#define SCREEN_HEIGHT 64 // OLED display height, in pixels#define OLED_RESET -1   //   QT-PY / XIAOAdafruit_SH1106G display = Adafruit_SH1106G(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-#define JST 3600*9const char* ssid = "atsutoのiphone"; //ルーターのSSIDconst char* password = "2dw71daaebhcv"; //ルーターのパスワードconst int port = 443;
+#define JST 3600*9const char* ssid = "write_ssid_of_your_access_point"; //ルーターのSSID
+const char* password = "write_password_of_your_access_point"; //ルーターのパスワード
+const int port = 443;
 int i=0;
 String code_data[2];
 uint16_t today_weather_code;
 uint16_t tomorrow_weather_code;
 const char* jp_weather_host = "www.jma.go.jp";
-String office_code= "170000"; //isikawaString jp_weather_area_url = "/bosai/forecast/data/forecast/" + office_code + ".json";
-String area_code_str = "170010"; //ishikawa areaString search_tag =  "code\":\"" + area_code_str + "\"},\"weatherCodes\":[\"";
+String office_code= "170000"; //isikawa
+String jp_weather_area_url = "/bosai/forecast/data/forecast/" + office_code + ".json";
+String area_code_str = "170010"; //ishikawa area
+String search_tag =  "code\":\"" + area_code_str + "\"},\"weatherCodes\":[\"";
 WiFiClientSecure client;
+
 void setup() {
   Serial.begin(9600);
   delay(250);
